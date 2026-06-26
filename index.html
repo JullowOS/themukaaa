@@ -37,10 +37,14 @@
     <img src="assets/stickers/shape-4.png"      class="deco-shape" style="top:42%;left:5%;width:50px;animation-delay:1.5s;animation-duration:9s" alt="" />
 
     <div class="hero-text">
+      <div class="hero-logo">
+        <img src="assets/logo/thmk-logo.png" onerror="this.style.display='none'" alt="THMK Logo" />
+      </div>
       <p class="welcome-line">Welcome to my</p>
       <h1 class="hero-title">
         <span class="port">Port</span><span class="folio">folio</span>
       </h1>
+      <p class="digital-garden">(Digital Garden)</p>
     </div>
 
     <div class="scroll-hint">
@@ -56,45 +60,45 @@
   <section class="stickers-section">
     <div class="stickers-canvas">
 
-      <div class="sticker-item" data-modal="about" style="top:4%;left:18%">
+      <a href="/me" class="sticker-item sticker-link" style="top:4%;left:18%">
         <img src="assets/stickers/sticker-me.png" class="sticker-img" alt="Get to know me" />
         <p class="sticker-label">Get to know me!</p>
-      </div>
+      </a>
 
-      <div class="sticker-item no-modal" style="top:3%;right:16%">
+      <div class="sticker-item no-action" style="top:3%;right:16%">
         <img src="assets/stickers/sticker-color.png" class="sticker-img" alt="Fav colour" />
-        <p class="sticker-label">Fav colour!</p>
+        <p class="sticker-label">Fav colour</p>
       </div>
 
-      <div class="sticker-item" data-modal="lidlbook" style="top:22%;left:38%">
+      <a href="/notebook" class="sticker-item sticker-link" style="top:22%;left:38%">
         <img src="assets/stickers/sticker-book.png" class="sticker-img" alt="My Lidlbook" />
         <p class="sticker-label">My Lidlbook!</p>
-      </div>
+      </a>
 
-      <div class="sticker-item no-modal" style="top:42%;left:16%">
+      <div class="sticker-item no-action" style="top:42%;left:16%">
         <img src="assets/stickers/sticker-cat.png" class="sticker-img" alt="I love cats" />
         <p class="sticker-label">I love cats so much!</p>
       </div>
 
-      <div class="sticker-item" data-modal="anime" style="top:42%;right:16%">
+      <a href="/anime" class="sticker-item sticker-link" style="top:42%;right:16%">
         <img src="assets/stickers/sticker-anime.png" class="sticker-img" alt="My fav anime" />
         <p class="sticker-label">My fav anime</p>
-      </div>
+      </a>
 
-      <div class="sticker-item no-modal" style="top:66%;left:16%">
+      <div class="sticker-item no-action" style="top:66%;left:16%">
         <img src="assets/stickers/sticker-fish.png" class="sticker-img" alt="I'm Pisces" />
         <p class="sticker-label">I'm Pisces</p>
       </div>
 
-      <div class="sticker-item" data-modal="cv" style="top:64%;left:42%">
+      <div class="sticker-item no-action" style="top:64%;left:42%">
         <img src="assets/stickers/sticker-cv.png" class="sticker-img" alt="My CV" />
         <p class="sticker-label">My CV</p>
       </div>
 
-      <div class="sticker-item" data-modal="music" style="top:66%;right:15%">
+      <a href="/songs" class="sticker-item sticker-link" style="top:66%;right:15%">
         <img src="assets/stickers/sticker-music.png" class="sticker-img" alt="My fav song" />
         <p class="sticker-label">My fav song!</p>
-      </div>
+      </a>
 
     </div>
   </section>
@@ -158,54 +162,7 @@
     </div>
   </footer>
 
-  <!-- MODALS -->
-  <div class="modal" id="modal-about">
-    <button class="modal-close">✕</button>
-    <h2>Get to know me!</h2>
-    <p>✏️ Add your about text here...</p>
-  </div>
 
-  <div class="modal" id="modal-lidlbook">
-    <button class="modal-close">✕</button>
-    <h2>My Lidlbook!</h2>
-    <p>✏️ Add your Lidlbook content here...</p>
-  </div>
-
-  <div class="modal" id="modal-anime">
-    <button class="modal-close">✕</button>
-    <h2>My Top 10 Anime</h2>
-    <ol class="anime-list">
-      <li>✏️ Anime 1</li>
-      <li>✏️ Anime 2</li>
-      <li>✏️ Anime 3</li>
-      <li>✏️ Anime 4</li>
-      <li>✏️ Anime 5</li>
-      <li>✏️ Anime 6</li>
-      <li>✏️ Anime 7</li>
-      <li>✏️ Anime 8</li>
-      <li>✏️ Anime 9</li>
-      <li>✏️ Anime 10</li>
-    </ol>
-  </div>
-
-  <div class="modal" id="modal-cv">
-    <button class="modal-close">✕</button>
-    <h2>My CV</h2>
-    <p>✏️ Link your CV PDF here or add content...</p>
-  </div>
-
-  <div class="modal" id="modal-music">
-    <button class="modal-close">✕</button>
-    <h2>My Fav Songs</h2>
-    <ul class="music-list">
-      <li>🎵 ✏️ Song 1 — Artist</li>
-      <li>🎵 ✏️ Song 2 — Artist</li>
-      <li>🎵 ✏️ Song 3 — Artist</li>
-      <li>🎵 ✏️ Song 4 — Artist</li>
-    </ul>
-  </div>
-
-  <div class="modal-overlay" id="modalOverlay"></div>
 
   <script src="script.js"></script>
 </body>
