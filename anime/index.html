@@ -3,31 +3,393 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Themukaaa — My Fav Anime</title>
-  <link rel="stylesheet" href="style.css" />
+  <title>Themukaaa - My Anime List</title>
+  <link rel="icon" type="image/svg+xml" href="/assets/favicon.svg" />
+  <link rel="stylesheet" href="/style.css" />
   <link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Caveat:wght@500;700&family=DM+Sans:wght@300;400;500&family=Swanky+and+Moo+Moo&display=swap" rel="stylesheet" />
+  <style>
+
+    .deco-shape {
+      position: fixed;
+      pointer-events: none;
+      z-index: 1;
+      animation: floatShape linear infinite;
+    }
+
+    /* HERO */
+    .anime-hero {
+      position: relative;
+      z-index: 2;
+      padding: 110px 28px 50px;
+      text-align: center;
+    }
+
+    .anime-title {
+      font-size: clamp(2.4rem, 8vw, 5rem);
+      line-height: 1;
+      letter-spacing: -0.02em;
+      margin-bottom: 18px;
+    }
+
+    .anime-title .word-my {
+      font-family: 'Caveat', cursive;
+      font-weight: 700;
+      font-style: italic;
+      color: #ffffff;
+    }
+
+    .anime-title .word-anime {
+      font-family: 'Syne', sans-serif;
+      font-weight: 800;
+      color: #ffffff;
+    }
+
+    .anime-title .word-addiction {
+      font-family: 'Swanky and Moo Moo', cursive;
+      font-size: 1.15em;
+      color: #ffffff;
+    }
+
+    .anime-hero p {
+      font-family: 'Swanky and Moo Moo', cursive;
+      font-size: clamp(1rem, 3vw, 1.4rem);
+      color: rgba(255,255,255,0.8);
+      max-width: 520px;
+      margin: 0 auto;
+      line-height: 1.6;
+    }
+
+    /* TOP 10 */
+    .section-wrap {
+      position: relative;
+      z-index: 2;
+      max-width: 640px;
+      margin: 0 auto;
+      padding: 0 20px 20px;
+    }
+
+    .anime-list {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      margin-bottom: 60px;
+    }
+
+    .anime-card {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 18px;
+      padding: 12px 16px;
+      transition: background 0.3s, transform 0.3s, border-color 0.3s;
+    }
+
+    .anime-card:hover {
+      background: rgba(255,255,255,0.08);
+      border-color: rgba(255,255,255,0.2);
+      transform: translateY(-3px);
+    }
+
+    .anime-rank {
+      flex-shrink: 0;
+      width: 46px;
+      height: 46px;
+      object-fit: contain;
+    }
+
+    .anime-cover {
+      flex-shrink: 0;
+      width: 70px;
+      height: 70px;
+      border-radius: 10px;
+      object-fit: cover;
+      border: 1px solid rgba(255,255,255,0.12);
+    }
+
+    .anime-info {
+      flex: 1;
+    }
+
+    .anime-name {
+      font-family: 'Syne', sans-serif;
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: #ffffff;
+      margin-bottom: 4px;
+    }
+
+    .anime-genre {
+      font-family: 'Swanky and Moo Moo', cursive;
+      font-size: 0.9rem;
+      color: rgba(255,255,255,0.4);
+    }
+
+    /* STATS */
+    .stats-section {
+      position: relative;
+      z-index: 2;
+      max-width: 640px;
+      margin: 0 auto 60px;
+      padding: 0 20px;
+      text-align: center;
+    }
+
+    .stats-heading {
+      font-size: clamp(1.8rem, 6vw, 3rem);
+      line-height: 1;
+      margin-bottom: 28px;
+    }
+
+    .stats-heading .my {
+      font-family: 'Swanky and Moo Moo', cursive;
+      font-weight: 700;
+      font-style: italic;
+      color: #ffffff;
+    }
+
+    .stats-heading .rest {
+      font-family: 'Swanky and Moo Moo', cursive;
+      font-weight: 800;
+      color: #ffffff;
+    }
+
+    .stats-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+    }
+
+    .stat-card {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 18px;
+      padding: 28px 16px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .stat-sticker {
+      width: 200px;
+      height: 200px;
+      object-fit: contain;
+    }
+
+    /* NORTH STAR */
+    .northstar-section {
+      position: relative;
+      z-index: 2;
+      max-width: 640px;
+      margin: 0 auto 80px;
+      padding: 0 20px;
+      text-align: center;
+    }
+
+    .northstar-heading {
+      font-size: clamp(1.8rem, 6vw, 3rem);
+      line-height: 1;
+      margin-bottom: 12px;
+      font-family: 'Swanky and Moo Moo', cursive;
+      color: #ffffff;
+    }
+
+    .northstar-quote {
+      font-family: 'Swanky and Moo Moo', cursive;
+      font-size: clamp(1rem, 3vw, 1.3rem);
+      color: rgba(255,255,255,0.65);
+      max-width: 480px;
+      margin: 0 auto 28px;
+      line-height: 1.6;
+    }
+
+    .ghibli-card {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 20px;
+      overflow: hidden;
+      transition: transform 0.3s, border-color 0.3s;
+    }
+
+    .ghibli-card:hover {
+      transform: translateY(-4px);
+      border-color: rgba(255,255,255,0.2);
+    }
+
+    .ghibli-img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+      display: block;
+    }
+
+    .ghibli-body {
+      padding: 18px;
+    }
+
+    .ghibli-name {
+      font-family: 'Syne', sans-serif;
+      font-size: 1.3rem;
+      font-weight: 800;
+      color: #ffffff;
+    }
+
+  </style>
 </head>
 <body>
   <canvas id="bgCanvas"></canvas>
+
+  <!-- Susuwatari floating stickers -->
+  <img src="/assets/stickers/susuwatari-1.svg" class="deco-shape" style="top:4%;left:4%;width:65px;animation-delay:0s;animation-duration:7s" alt="" />
+  <img src="/assets/stickers/susuwatari-2.svg" class="deco-shape" style="top:5%;right:7%;width:55px;animation-delay:1.5s;animation-duration:9s" alt="" />
+  <img src="/assets/stickers/susuwatari-3.svg" class="deco-shape" style="top:22%;right:3%;width:50px;animation-delay:0.8s;animation-duration:8s" alt="" />
+  <img src="/assets/stickers/susuwatari-4.svg" class="deco-shape" style="top:42%;left:2%;width:60px;animation-delay:2s;animation-duration:11s" alt="" />
+  <img src="/assets/stickers/susuwatari-5.svg" class="deco-shape" style="top:62%;right:3%;width:52px;animation-delay:0.4s;animation-duration:10s" alt="" />
+  <img src="/assets/stickers/susuwatari-6.svg" class="deco-shape" style="top:80%;left:3%;width:58px;animation-delay:1.2s;animation-duration:8s" alt="" />
+
+  <!-- Navbar -->
   <nav class="navbar">
-    <a href="/" class="nav-name" style="text-decoration:none">← Themuka</a>
-    <span class="nav-est">My Fav Anime</span>
+    <a href="/" class="nav-name" style="text-decoration:none">Themuka&#8482;</a>
+    <span class="nav-est">Est · 2026</span>
   </nav>
-  <section class="page-content">
-    <h1 class="page-title">My Top 10 Anime</h1>
-    <ol class="anime-list">
-      <li>✏️ Anime 1</li>
-      <li>✏️ Anime 2</li>
-      <li>✏️ Anime 3</li>
-      <li>✏️ Anime 4</li>
-      <li>✏️ Anime 5</li>
-      <li>✏️ Anime 6</li>
-      <li>✏️ Anime 7</li>
-      <li>✏️ Anime 8</li>
-      <li>✏️ Anime 9</li>
-      <li>✏️ Anime 10</li>
-    </ol>
-  </section>
-  <script src="script.js"></script>
+
+  <!-- Hero -->
+  <div class="anime-hero">
+    <h1 class="anime-title">
+      <span class="word-my">My </span><span class="word-anime">Anime </span><span class="word-addiction">Addiction</span>
+    </h1>
+    <p>I've seen enough anime to know that I'll never have enough time to see it all but here's my top 10!</p>
+  </div>
+
+  <!-- Top 10 -->
+  <div class="section-wrap">
+    <div class="anime-list">
+
+      <div class="anime-card">
+        <img src="/assets/stickers/ranking-1.png" class="anime-rank" alt="1" />
+        <img src="/assets/photos/farming-life.svg" class="anime-cover" alt="Farming Life in Another World" />
+        <div class="anime-info">
+          <p class="anime-name">Farming Life in Another World</p>
+          <p class="anime-genre">Isekai, Slice of Life, Fantasy</p>
+        </div>
+      </div>
+
+      <div class="anime-card">
+        <img src="/assets/stickers/ranking-2.png" class="anime-rank" alt="2" />
+        <img src="/assets/photos/slime.svg" class="anime-cover" alt="That Time I Got Reincarnated as a Slime" />
+        <div class="anime-info">
+          <p class="anime-name">That Time I Got Reincarnated as a Slime</p>
+          <p class="anime-genre">Isekai, Adventure, Fantasy</p>
+        </div>
+      </div>
+
+      <div class="anime-card">
+        <img src="/assets/stickers/ranking-3.png" class="anime-rank" alt="3" />
+        <img src="/assets/photos/spider.svg" class="anime-cover" alt="So I'm a Spider, So What?" />
+        <div class="anime-info">
+          <p class="anime-name">So I'm a Spider, So What?</p>
+          <p class="anime-genre">Isekai, Action, Comedy</p>
+        </div>
+      </div>
+
+      <div class="anime-card">
+        <img src="/assets/stickers/ranking-4.png" class="anime-rank" alt="4" />
+        <img src="/assets/photos/jojo.svg" class="anime-cover" alt="JoJo's Bizarre Adventure" />
+        <div class="anime-info">
+          <p class="anime-name">JoJo's Bizarre Adventure</p>
+          <p class="anime-genre">Action, Supernatural, Drama</p>
+        </div>
+      </div>
+
+      <div class="anime-card">
+        <img src="/assets/stickers/ranking-5.png" class="anime-rank" alt="5" />
+        <img src="/assets/photos/black-clover.svg" class="anime-cover" alt="Black Clover" />
+        <div class="anime-info">
+          <p class="anime-name">Black Clover</p>
+          <p class="anime-genre">Action, Magic, Adventure</p>
+        </div>
+      </div>
+
+      <div class="anime-card">
+        <img src="/assets/stickers/ranking-6.png" class="anime-rank" alt="6" />
+        <img src="/assets/photos/love-stage.svg" class="anime-cover" alt="Love Stage" />
+        <div class="anime-info">
+          <p class="anime-name">Love Stage</p>
+          <p class="anime-genre">Romance, Comedy, BL</p>
+        </div>
+      </div>
+
+      <div class="anime-card">
+        <img src="/assets/stickers/ranking-7.png" class="anime-rank" alt="7" />
+        <img src="/assets/photos/violet.svg" class="anime-cover" alt="Violet Evergarden" />
+        <div class="anime-info">
+          <p class="anime-name">Violet Evergarden</p>
+          <p class="anime-genre">Drama, Fantasy, Emotional</p>
+        </div>
+      </div>
+
+      <div class="anime-card">
+        <img src="/assets/stickers/ranking-8.png" class="anime-rank" alt="8" />
+        <img src="/assets/photos/silent-voice.svg" class="anime-cover" alt="A Silent Voice" />
+        <div class="anime-info">
+          <p class="anime-name">A Silent Voice</p>
+          <p class="anime-genre">Drama, Romance, Slice of Life</p>
+        </div>
+      </div>
+
+      <div class="anime-card">
+        <img src="/assets/stickers/ranking-9.png" class="anime-rank" alt="9" />
+        <img src="/assets/photos/dan-da-dan.svg" class="anime-cover" alt="Dan Da Dan" />
+        <div class="anime-info">
+          <p class="anime-name">Dan Da Dan</p>
+          <p class="anime-genre">Action, Supernatural, Comedy</p>
+        </div>
+      </div>
+
+      <div class="anime-card">
+        <img src="/assets/stickers/ranking-10.png" class="anime-rank" alt="10" />
+        <img src="/assets/photos/zom-100.svg" class="anime-cover" alt="Zom 100" />
+        <div class="anime-info">
+          <p class="anime-name">Zom 100</p>
+          <p class="anime-genre">Action, Comedy, Horror</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Stats -->
+  <div class="stats-section">
+    <h2 class="stats-heading">
+      <span class="my">My </span><span class="rest">Stats</span>
+    </h2>
+    <div class="stats-grid">
+      <div class="stat-card">
+        <img src="/assets/stickers/271.png" class="stat-sticker" alt="271+" />
+        <p style="font-family:'Swanky and Moo Moo',cursive;color:rgba(255,255,255,0.55);font-size:1.05rem;">Anime completed</p>
+      </div>
+      <div class="stat-card">
+        <img src="/assets/stickers/21.png" class="stat-sticker" alt="21" />
+        <p style="font-family:'Swanky and Moo Moo',cursive;color:rgba(255,255,255,0.55);font-size:1.05rem;">Ongoing</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- North Star -->
+  <div class="northstar-section">
+    <h2 class="northstar-heading">My North Star</h2>
+    <p class="northstar-quote">If I could live inside their movies, I would. Nothing else quite compares!</p>
+    <div class="ghibli-card">
+      <a href="https://www.ghibli.jp/" target="_blank" rel="noopener">
+    <img src="/assets/photos/studio-ghibli.svg" class="ghibli-img" alt="Studio Ghibli"></a>
+      <div class="ghibli-body">
+        <p class="ghibli-name">Studio Ghibli</p>
+      </div>
+    </div>
+  </div>
+
+  <script src="/script.js"></script>
 </body>
 </html>
